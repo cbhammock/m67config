@@ -7,45 +7,95 @@
 
     <v-stepper-content step="1">
       <!-- <v-card color="white" class="mb-12" height="200px"> -->
-      <v-col cols="8">
-        <v-combobox v-model="select" :commProt="commProt" label="Select the communications protocol"></v-combobox>
-        <v-slider
-          v-model="numDin"
-          label="Number of Digital Input Modules"
-          min="0"
-          max="20"
-        >
-          <template v-slot:append>
-            <span v-text="numDin"></span>
-          </template>
-        </v-slider>
-        <v-slider v-model="numDout" label="Number of Digital Output Modules" min="0" max="20">
-          <template v-slot:append>
-            <span v-text="numDout"></span>
-          </template>
-        </v-slider>
-        <v-slider v-model="num4to20" label="Number of Analog 4-20ma Modules" min="0" max="20">
-          <template v-slot:append>
-            <span v-text="num4to20"></span>
-          </template>
-        </v-slider>
-        <v-slider v-model="num0to10" label="Number of Analog 0-10v Modules" min="0" max="20">
-          <template v-slot:append>
-            <span v-text="num0to10"></span>
-          </template>
-        </v-slider>
-        <v-slider v-model="numPowPlus" label="Number of Power Plus Modules" min="0" max="20">
-          <template v-slot:append>
-            <span v-text="numPowPlus"></span>
-          </template>
-        </v-slider>
-        <v-slider v-model="numValves" label="Number of Valves" value="2" min="2" max="20">
-          <template v-slot:append>
-            <span v-text="numValves"></span>
-          </template>
-        </v-slider>
+      <v-col cols="12">
+
+        <v-row>
+          <v-col cols="3">
+            <p class="text-left">Communications Protocol:</p>
+          </v-col>
+          <v-col cols="4">
+            <v-select :items="commProt" dense single-line hide-details hide-selected outlined solo value="EtherNet/IP"></v-select>
+          </v-col>
+        </v-row>  
+
+        <v-row>
+          <v-col cols="3">
+            <p class="text-left">Digital Input Modules:</p>
+          </v-col>
+          <v-col>
+            <v-slider v-model="numDin" min="0" max="20" ticks="always"></v-slider>
+          </v-col>
+          <v-col cols="1">
+            <span class="text-right" v-text="numDin"></span>
+          </v-col>
+        </v-row>  
+
+        <v-row>
+          <v-col cols="3">
+            <p class="text-left">Digital Output Modules:</p>
+          </v-col>
+          <v-col>
+            <v-slider v-model="numDout" min="0" max="20" ticks="always"></v-slider>
+          </v-col>
+          <v-col cols="1">
+            <span class="text-right" v-text="numDout"></span>
+          </v-col>
+        </v-row> 
+
+
+        <v-row>
+          <v-col cols="3">
+            <p class="text-left">Power Plus Modules:</p>
+          </v-col>
+          <v-col>
+            <v-slider v-model="numPowPlus" min="0" max="20" ticks="always"></v-slider>
+          </v-col>
+          <v-col cols="1">
+            <span class="text-right" v-text="numPowPlus"></span>
+          </v-col>
+        </v-row> 
+
+
+        <v-row>
+          <v-col cols="3">
+            <p class="text-left">Analog 4-20ma Modules:</p>
+          </v-col>
+          <v-col>
+            <v-slider v-model="num4to20" min="0" max="20" ticks="always"></v-slider>
+          </v-col>
+          <v-col cols="1">
+            <span class="text-right" v-text="num4to20"></span>
+          </v-col>
+        </v-row> 
+
+
+        <v-row>
+          <v-col cols="3">
+            <p class="text-left">Analog 0-10v Modules:</p>
+          </v-col>
+          <v-col>
+            <v-slider v-model="num0to10" min="0" max="20" ticks="always"></v-slider>
+          </v-col>
+          <v-col cols="1">
+            <span class="text-right" v-text="num0to10"></span>
+          </v-col>
+        </v-row> 
+
+
+        <v-row>
+          <v-col cols="3">
+            <p class="text-left">Number of Valves:</p>
+          </v-col>
+          <v-col>
+            <v-slider v-model="numValves" min="2" max="32" ticks="always"></v-slider>
+          </v-col>
+          <v-col cols="1">
+            <span class="text-right" v-text="numValves"></span>
+          </v-col>
+        </v-row> 
+
         
-        <v-radio-group v-model="radios" row :mandatory="true">
+        <v-radio-group v-model="radios"  mandatory="true">
           <v-radio label="42 Series" value="radio-1" color="primary"></v-radio>
           <v-radio label="92 Series" value="radio-2" color="primary"></v-radio>
         </v-radio-group>
@@ -91,6 +141,7 @@ export default {
       numPowPlus: 0,
       numValves: 2,
       e6: 1,
+      //ticks: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
       commProt: ["EtherNet/IP", "EtherCAT", "POWERLINK", "PROFINET", "Modbus/TCP"]
     };
   }
